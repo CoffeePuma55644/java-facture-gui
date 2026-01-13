@@ -68,18 +68,22 @@ public class FactureGUI extends JFrame {
         nouvelleFacture();
     }
     
+    // Méthode utilitaire pour ajouter un champ de saisie
+    private void ajouterChampSaisie(JPanel panel, String label, JTextField champ) {
+        panel.add(new JLabel(label));
+        panel.add(champ);
+    }
+    
     // Créer le panel pour les informations du client
     private JPanel creerPanelClient() {
         JPanel panel = new JPanel(new GridLayout(2, 2, 5, 5));
         panel.setBorder(BorderFactory.createTitledBorder("Informations Client"));
         
-        panel.add(new JLabel("Nom du client:"));
         txtNomClient = new JTextField(20);
-        panel.add(txtNomClient);
+        ajouterChampSaisie(panel, "Nom du client:", txtNomClient);
         
-        panel.add(new JLabel("Téléphone:"));
         txtTelephone = new JTextField(20);
-        panel.add(txtTelephone);
+        ajouterChampSaisie(panel, "Téléphone:", txtTelephone);
         
         return panel;
     }
@@ -89,17 +93,14 @@ public class FactureGUI extends JFrame {
         JPanel panel = new JPanel(new GridLayout(4, 2, 5, 5));
         panel.setBorder(BorderFactory.createTitledBorder("Articles"));
         
-        panel.add(new JLabel("Nom de l'article:"));
         txtNomArticle = new JTextField(20);
-        panel.add(txtNomArticle);
+        ajouterChampSaisie(panel, "Nom de l'article:", txtNomArticle);
         
-        panel.add(new JLabel("Quantité:"));
         txtQuantite = new JTextField(20);
-        panel.add(txtQuantite);
+        ajouterChampSaisie(panel, "Quantité:", txtQuantite);
         
-        panel.add(new JLabel("Prix unitaire ($):"));
         txtPrixUnitaire = new JTextField(20);
-        panel.add(txtPrixUnitaire);
+        ajouterChampSaisie(panel, "Prix unitaire ($):", txtPrixUnitaire);
         
         panel.add(new JLabel(""));
         btnAjouterArticle = new JButton("Ajouter Article");
@@ -199,37 +200,9 @@ public class FactureGUI extends JFrame {
             facture.ajouterArticle(art);
         }
         
-        // Générer le texte de la facture
-        StringBuilder sb = new StringBuilder();
-        sb.append("========================================\n");
-        sb.append("       FACTURE - SUPER MARCHÉ\n");
-        sb.append("========================================\n\n");
-        
-        sb.append("INFORMATIONS CLIENT:\n");
-        sb.append("Nom: ").append(nomClient).append("\n");
-        sb.append("Téléphone: ").append(telephone).append("\n\n");
-        
-        sb.append("ARTICLES ACHETÉS:\n");
-        sb.append("----------------------------------------\n");
-        int i = 1;
-        for (Article article : facture.getArticles()) {
-            sb.append(i++).append(". ").append(article.getNom()).append("\n");
-            sb.append("   Quantité: ").append(article.getQuantite()).append("\n");
-            sb.append("   Prix unitaire: ").append(String.format("%.2f", article.getPrixUnitaire())).append(" $\n");
-            sb.append("   Total: ").append(String.format("%.2f", article.getTotal())).append(" $\n\n");
-        }
-        
-        sb.append("========================================\n");
-        sb.append("CALCULS:\n");
-        sb.append("----------------------------------------\n");
-        sb.append("Total Hors Taxe: ").append(String.format("%.2f", facture.calculerTotalHT())).append(" $\n");
-        sb.append("Remise (30%): ").append(String.format("%.2f", facture.calculerRemise())).append(" $\n");
-        sb.append("TVA (16%): ").append(String.format("%.2f", facture.calculerTVA())).append(" $\n");
-        sb.append("========================================\n");
-        sb.append("NET À PAYER: ").append(String.format("%.2f", facture.calculerNetAPayer())).append(" $\n");
-        sb.append("========================================\n");
-        
-        txtResultat.setText(sb.toString());
+        // Utiliser FormatFacture pour générer le texte
+        String texteFacture = FormatFacture.formaterFacture(facture);
+        txtResultat.setText(texteFacture);
     }
     
     // Nouvelle facture

@@ -20,11 +20,17 @@ Application Java avec interface graphique (Swing) pour la gestion de facturation
    - Calcule: Total HT, Remise (30% si ≥100$), TVA (16%), Net à payer
    - Constantes: TAUX_TVA = 0.16, TAUX_REMISE = 0.30, SEUIL_REMISE = 100.0
 
-4. **FactureGUI.java** (255 lignes)
+4. **FormatFacture.java** (56 lignes) - NOUVELLE CLASSE
+   - Classe utilitaire pour formater l'affichage des factures
+   - Méthodes: formaterFacture(), ajouterEntete(), ajouterInfoClient(), ajouterListeArticles(), ajouterCalculs()
+   - Sépare la logique de formatage de l'interface graphique
+
+5. **FactureGUI.java** (228 lignes) - OPTIMISÉE
    - Interface graphique avec Swing
    - Formulaires pour client et articles
    - Boutons: Ajouter Article, Afficher Facture, Nouvelle Facture
    - Zone de texte pour afficher la facture formatée
+   - Méthode utilitaire: ajouterChampSaisie() pour réduire la duplication
 
 ## Fonctionnalités Implémentées ✓
 
@@ -80,10 +86,13 @@ Net à Payer = Total HT - Remise + TVA
 
 1. **Simple et Clair**: Code facile à comprendre pour un débutant
 2. **OOP**: Utilisation correcte des classes et encapsulation
-3. **GUI Fonctionnelle**: Interface intuitive avec Swing
-4. **Validation**: Gestion des erreurs utilisateur
-5. **Calculs Précis**: Formules mathématiques correctes
-6. **Sans Dépendances**: Utilise uniquement les bibliothèques Java standard
+3. **Séparation des Responsabilités**: Classe FormatFacture dédiée au formatage
+4. **Code DRY**: Méthode utilitaire pour éviter la duplication
+5. **GUI Fonctionnelle**: Interface intuitive avec Swing
+6. **Validation**: Gestion des erreurs utilisateur
+7. **Calculs Précis**: Formules mathématiques correctes
+8. **Sans Dépendances**: Utilise uniquement les bibliothèques Java standard
+9. **Maintenable**: Code bien organisé et facile à modifier
 
 ## Compilation et Exécution
 
@@ -103,6 +112,14 @@ java FactureGUI
 
 ---
 
-**Total:** 369 lignes de code Java
+**Total:** 398 lignes de code Java
 **Langage:** Java (Swing)
 **Niveau:** Débutant/Intermédiaire
+
+## Optimisations Récentes
+
+- ✅ Extraction du formatage dans FormatFacture.java (séparation des responsabilités)
+- ✅ Réduction de FactureGUI.java de 255 à 228 lignes (-10.6%)
+- ✅ Méthode afficherFacture() réduite de ~70 à 28 lignes (-60%)
+- ✅ Ajout de méthode utilitaire ajouterChampSaisie() pour réduire duplication
+- ✅ Code maintenu simple et accessible (pas de lambdas, pas de streams)
