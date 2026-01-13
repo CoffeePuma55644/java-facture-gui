@@ -49,7 +49,7 @@ public class TestFacture {
         assert Math.abs(facture2.calculerTVA() - 13.44) < 0.01 : "Erreur Test 2 - TVA";
         assert Math.abs(facture2.calculerNetAPayer() - 97.44) < 0.01 : "Erreur Test 2 - Net à payer";
         
-        System.out.println("✓ Tous les tests sont réussis!");
-        System.out.println("✓ Les calculs de TVA et remise fonctionnent correctement!");
+        System.out.println("✓ Tous les tests sont réussis !");
+        System.out.println("✓ Les calculs de TVA et remise fonctionnent correctement !");
     }
 }

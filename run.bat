@@ -4,7 +4,7 @@ cd src
 javac *.java
 
 if %ERRORLEVEL% EQU 0 (
-    echo Compilation reussie!
+    echo Compilation réussie !
     echo.
     echo === Lancement de l'application ===
     java FactureGUI
