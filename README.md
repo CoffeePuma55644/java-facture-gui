@@ -39,5 +39,6 @@ java FactureGUI
 - `Article.java` - Classe représentant un article
 - `Client.java` - Classe représentant un client
 - `Facture.java` - Classe gérant les calculs de facturation
+- `FormatFacture.java` - Classe pour formater l'affichage des factures
 - `FactureGUI.java` - Interface graphique principale
 
