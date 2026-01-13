@@ -80,6 +80,11 @@ public class FactureGUI extends JFrame {
                     "Erreur", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            if (nbArticles > 100) {
+                JOptionPane.showMessageDialog(this, "Le nombre d'articles ne peut pas dépasser 100!", 
+                    "Erreur", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             
             client = new Client(nom, telephone);
             afficherFormulairArticles(nbArticles, 0);
@@ -131,6 +136,12 @@ public class FactureGUI extends JFrame {
                     if (quantite <= 0 || prix <= 0) {
                         JOptionPane.showMessageDialog(FactureGUI.this, 
                             "La quantité et le prix doivent être supérieurs à 0!", 
+                            "Erreur", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    if (quantite > 10000 || prix > 100000.0) {
+                        JOptionPane.showMessageDialog(FactureGUI.this, 
+                            "Les valeurs sont trop grandes! Quantité max: 10000, Prix max: 100000$", 
                             "Erreur", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
